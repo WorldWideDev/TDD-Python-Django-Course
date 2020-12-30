@@ -27,10 +27,11 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
+TEST_RUNNER = 'redgreenunittest.django.runner.RedGreenDiscoverRunner'
 # Application definition
 
 INSTALLED_APPS = [
+    'lists',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
