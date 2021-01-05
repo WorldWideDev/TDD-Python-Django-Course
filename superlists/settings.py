@@ -25,7 +25,7 @@ SECRET_KEY = 'oj#hbd!2er$%5#%s@to8#8)d1m349jz$t&%zn6v0!dmt(ho8f@'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 TEST_RUNNER = 'redgreenunittest.django.runner.RedGreenDiscoverRunner'
 # Application definition
