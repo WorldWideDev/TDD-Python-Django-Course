@@ -3,6 +3,8 @@ from fabric.contrib.files import append, exists
 from fabric.api import cd, env, local, run
 
 REPO_URL = 'https://github.com/WorldWideDev/TDD-Python-Django-Course.git'
+env.key_filename = ['/home/xdevx/XFiles/Deployment/t420.pem']
+env.hosts = ['ec2-34-212-50-123.us-west-2.compute.amazonaws.com']
 
 def deploy():
     site_folder = f'/home/{env.user}/sites/{env.host}'
@@ -18,7 +20,7 @@ def _get_latest_source():
     if exists('.git'):
         run('git fetch')
     else:
-        run(f'git clone {REPO_URL}')
+        run(f'git clone {REPO_URL} .')
     current_commit = local("git log -n 1 -- format=%H", capture=True)
     run(f'git reset --hard {current_commit}')
 
