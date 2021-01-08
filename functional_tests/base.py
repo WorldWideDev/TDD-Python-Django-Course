@@ -18,6 +18,9 @@ class FunctionalTest(StaticLiveServerTestCase):
     def tearDown(self):
         self.browser.quit()
 
+    def get_item_input_box(self):
+        return self.browser.find_element_by_id('id_text')
+
     def wait_for(self, fn):
         start_time = time.time()
         while True:
