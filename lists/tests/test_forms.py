@@ -3,11 +3,6 @@ from lists.forms import ItemForm, EMPTY_ITEM_ERROR
 from unittest import skip
 class ItemFormTest(TestCase):
 
-    @skip('skiping item text test for now...')
-    def test_form_renders_item_text_input(self):
-        form = ItemForm()
-        self.fail(form.as_p())
-
     def test_form_item_input_has_placeholder_and_css_classes(self):
         form = ItemForm()
         self.assertIn('placeholder="Enter a to-do item"', form.as_p())
