@@ -55,14 +55,16 @@ def _update_database():
 
 
 def _provision_nginx():
-    run(f'cat ./deploy_tools/nginx.template.conf \
-            | sed "s/DOMAIN/{env.host}/g" \
-            | sudo tee /etc/nginx/sites-available/{env.host}')
-    run(f'sudo ln -s /etc/nginx/sites-available/{env.host} \
+    if not exists(f'/etc/nginx/sites-enabled/{env.host}'):
+        run(f'cat ./deploy_tools/nginx.template.conf \
+                | sed "s/DOMAIN/{env.host}/g" \
+                | sudo tee /etc/nginx/sites-available/{env.host}')
+        run(f'sudo ln -s /etc/nginx/sites-available/{env.host} \
             /etc/nginx/sites-enabled')
 
 def _provision_gunicorn():
-    run(f'cat ./deploy_tools/gunicorn-systemd.template.service \
+    if not exists(f'/etc/systemd/system/gunicorn-{env.host}.service'):
+        run(f'cat ./deploy_tools/gunicorn-systemd.template.service \
             | sed "s/DOMAIN/{env.host}/g" \
             | sudo tee /etc/systemd/system/gunicorn-{env.host}.service')
 
